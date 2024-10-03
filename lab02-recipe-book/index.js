@@ -128,7 +128,7 @@ async function main() {
                 return res.status(400).json({ error: 'Missing required fields' });
             }
 
-            const cuisineDoc = await db.collection('cuisines').findOne({ name: cuisine });
+            const cuisineDoc = await db.collection('cuisine').findOne({ name: cuisine });
             
             if (!cuisineDoc) {
                 return res.status(400).json({ error: 'Invalid cuisine' });
@@ -179,7 +179,7 @@ async function main() {
                 return res.status(400).json({ error: 'Missing required fields' });
             }
 
-            const cuisineDoc = await db.collection('cuisines').findOne({ name: cuisine });
+            const cuisineDoc = await db.collection('cuisine').findOne({ name: cuisine });
             if (!cuisineDoc) {
                 return res.status(400).json({ error: 'Invalid cuisine' });
             }
