@@ -28,7 +28,15 @@ const verifyToken = (req, res, next) => {
 
 const app = express();
 const mongoUri = process.env.MONGO_URI;
-const dbname = "sctp_recipe_book"; // make sure this matches your database in mongo
+const dbname = "recipe"; // make sure this matches your database in mongo
+
+async function connect(uri, dbname) {
+    let client = await MongoClient.connect(uri, {
+        useUnifiedTopology: true
+    })
+    let db = client.db(dbname);
+    return _db;
+}
 
 // Middleware
 app.use(express.json());
@@ -46,6 +54,12 @@ async function main() {
     const db = await connect(mongoUri, dbname);
 
     // Routes
+
+    app.get('/', function(req,res){
+        res.json({
+           "message":"hello world"
+        });
+    })
 
     // Get all recipes (with search functionality)
     app.get('/recipes', async (req, res) => {
